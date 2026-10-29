@@ -46,12 +46,12 @@
   /* ====== HEADER ====== */
   header{
     position:fixed;top:0;left:0;right:0;z-index:100;
-    background:rgba(244,246,243,.67);backdrop-filter:blur(12px);
+    background:rgba(244,246,243,.85);backdrop-filter:blur(12px);
     border-bottom:1px solid var(--border);
     transition:padding .4s var(--ease);
   }
   header.shrink{padding:4px 0}
-  .nav{max-width:1280px;margin:0 auto;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:padding .4s var(--ease);flex-wrap: wrap;}
+  .nav{max-width:1280px;margin:0 auto;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:padding .4s var(--ease);}
   header.shrink .nav{padding:12px 40px}
   
   .logo{font-family:var(--font-serif);font-size:24px;letter-spacing:4px;text-transform:uppercase;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:12px;color:var(--bg-dark)}
@@ -66,13 +66,13 @@
   .nav-links a:hover,.nav-links a.active{color:var(--bg-dark)}
   .nav-links a:hover::after,.nav-links a.active::after{width:100%}
   
-  .nav-actions { display: flex; align-items: center; gap: 16px; }
+  .nav-actions { display: flex; align-items: center; gap: 12px; }
   
   .currency-toggle { display: flex; background: var(--border); border-radius: 20px; padding: 3px; }
   .currency-toggle button { background: none; border: none; padding: 4px 12px; font-size: 10px; font-weight: 600; cursor: pointer; border-radius: 16px; color: var(--text-muted); transition: all 0.3s; }
   .currency-toggle button.active { background: var(--surface); color: var(--bg-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
 
-  .btn-cart{position:relative;background:none;border:1px solid var(--border);padding:10px 20px;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;color:var(--bg-dark);overflow:hidden;transition:color .4s var(--ease),border-color .4s var(--ease)}
+  .btn-cart{position:relative;background:none;border:1px solid var(--border);padding:8px 16px;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;color:var(--bg-dark);overflow:hidden;transition:color .4s var(--ease),border-color .4s var(--ease)}
   .btn-cart::before{content:"";position:absolute;inset:0;background:var(--bg-dark);transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease);z-index:0}
   .btn-cart:hover{color:var(--bg-light);border-color:var(--bg-dark)}
   .btn-cart:hover::before{transform:scaleX(1);transform-origin:left}
@@ -82,16 +82,16 @@
   .hamburger {
     display: none; /* Oculto en PC */
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 5px;
+    padding: 4px;
     z-index: 101;
   }
   .hamburger span {
     display: block;
-    width: 25px;
+    width: 22px;
     height: 2px;
     background: var(--bg-dark);
     transition: 0.3s;
@@ -105,7 +105,7 @@
   .mobile-menu-bg.open { display: block; animation: fadeIn .3s; }
   
   .mobile-menu {
-    position: fixed; top: 0; right: 0; height: 100%; width: 300px; max-width: 85vw;
+    position: fixed; top: 0; right: 0; height: 100%; width: 280px; max-width: 85vw;
     background: var(--bg-light); z-index: 201; transform: translateX(100%);
     transition: transform .4s var(--ease); display: flex; flex-direction: column;
     box-shadow: -10px 0 30px rgba(0,0,0,0.1);
@@ -113,16 +113,16 @@
   .mobile-menu.open { transform: translateX(0); }
   
   .mobile-menu-header {
-    padding: 24px; display: flex; justify-content: space-between; align-items: center;
+    padding: 20px; display: flex; justify-content: space-between; align-items: center;
     border-bottom: 1px solid var(--border);
   }
-  .mobile-menu-header .logo { font-size: 20px; }
+  .mobile-menu-header .logo { font-size: 18px; }
   .close-btn { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-muted); }
   
-  .mobile-nav-links { display: flex; flex-direction: column; padding: 24px; gap: 20px; }
+  .mobile-nav-links { display: flex; flex-direction: column; padding: 20px; gap: 16px; }
   .mobile-nav-links a {
-    font-family: var(--font-serif); font-size: 20px; color: var(--bg-dark);
-    text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid var(--border); padding-bottom: 10px;
+    font-family: var(--font-serif); font-size: 18px; color: var(--bg-dark);
+    text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1px solid var(--border); padding-bottom: 10px;
     transition: color 0.3s;
   }
   .mobile-nav-links a:hover, .mobile-nav-links a.active { color: var(--accent); }
@@ -161,7 +161,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    padding: 100px 0;
+    padding: 120px 0 100px 0; /* Aumentamos el padding superior para que no choque con el header */
     background-color: var(--bg-light);
     overflow: hidden;
   }
@@ -461,29 +461,42 @@
     /* Header */
     .nav-links { display: none; } /* Ocultamos links de escritorio */
     .hamburger { display: flex; } /* Mostramos el menú hamburguesa */
-    .nav { padding: 16px 24px; justify-content: space-between; }
-    header.shrink .nav { padding: 12px 24px; }
+    .nav { 
+      padding: 12px 16px; /* Menos padding para que entre todo */
+      justify-content: space-between; 
+      gap: 8px;
+    }
+    header.shrink .nav { padding: 10px 16px; }
     
+    /* Achicamos logo y botones para que entren en una línea */
+    .logo { font-size: 18px; letter-spacing: 2px; gap: 6px; }
+    .logo .key-icon { width: 20px; height: 20px; }
+    .nav-actions { gap: 6px; }
+    .currency-toggle { padding: 2px; }
+    .currency-toggle button { padding: 3px 6px; font-size: 9px; }
+    .btn-cart { padding: 6px 10px; font-size: 9px; }
+
     /* Contenedores generales */
     .container { padding: 0 24px; }
 
-    /* Carrusel */
+    /* Carrusel - Ajuste para que no choque con el header */
     .split-carrusel-seccion {
       flex-direction: column;
-      padding: 60px 0;
+      padding: 120px 0 60px 0; /* Aumentamos el top padding para librar el header */
     }
+    
     .carrusel-titulo-wrapper {
       position: relative;
       left: 0;
       text-align: center;
-      margin: 0 20px 40px 20px;
-      padding: 35px 25px;
+      margin: 0 20px 30px 20px;
+      padding: 30px 20px;
       pointer-events: auto;
       max-width: 100%;
       width: calc(100% - 40px);
     }
     .carrusel-titulo {
-      font-size: 38px;
+      font-size: 32px;
       line-height: 1.2;
     }
     .carrusel-wrapper {
@@ -503,23 +516,15 @@
     
     .form-row { grid-template-columns: 1fr; }
     
-    /* Espaciados más chicos */
+    /* Espaciados más chicos y margen superior para que no pise el header */
     .intro { padding: 80px 24px; }
-    .about-page, .contact-page, .collection-page { padding-top: 100px; padding-bottom: 60px; }
-    .product-page { padding-top: 100px; }
+    .about-page, .contact-page, .collection-page { padding-top: 120px; padding-bottom: 60px; }
+    .product-page, .checkout-page { padding-top: 120px; }
     
     .section-head { flex-direction: column; align-items: flex-start; gap: 16px; }
   }
 
   @media (max-width: 480px) {
-    .logo { font-size: 20px; letter-spacing: 2px; }
-    .logo .key-icon { width: 22px; height: 22px; }
-    .btn-cart { padding: 8px 12px; font-size: 9px; }
-    .currency-toggle button { padding: 3px 8px; font-size: 9px; }
-    
-    .carrusel-titulo { font-size: 32px; letter-spacing: 1px; }
-    .carrusel-subtitulo { font-size: 10px; }
-    
     .featured-grid { grid-template-columns: 1fr; }
     .size-options button { padding: 10px 15px; font-size: 12px; }
     .footer-bottom { flex-direction: column; text-align: center; }
@@ -570,7 +575,7 @@
 <div class="mobile-menu-bg" id="mobileMenuBg" onclick="closeMobileMenu()"></div>
 <aside class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-header">
-    <div class="logo">LORD'S</div>
+    <div class="logo" onclick="navigate('/home'); closeMobileMenu();">LORD'S</div>
     <button class="close-btn" onclick="closeMobileMenu()">✕</button>
   </div>
   <nav class="mobile-nav-links">
